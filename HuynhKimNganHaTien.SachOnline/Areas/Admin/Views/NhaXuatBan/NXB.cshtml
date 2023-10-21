@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HuynhKimNganHaTien.SachOnline.Models.NHAXUATBAN>
+
+@{
+    ViewBag.Title = "ChiTietNXB";
+    Layout = null;
+}
+
+<h2>IndexAdmin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Them")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNXB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNXB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Sua", new { id = item.MaNXB }) |
+                @Html.ActionLink("Details", "ChiTiet", new { id = item.MaNXB }) |
+                @Html.ActionLink("Delete", "Xoa", new { id = item.MaNXB })
+            </td>
+        </tr>
+    }
+
+</table>

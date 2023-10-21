@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+@model PagedList.PagedList<HuynhKimNganHaTien.SachOnline.Models.SACH>
+@using HuynhKimNganHaTien.SachOnline.Models;
+@using PagedList.Mvc
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h2 class="text-center">SÁCH THEO CHỦ ĐỀ</h2>
+    <hr>
+    <div class="row text-center">
+        @foreach (var sach in Model)
+        {
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                <div class="thumbnail">
+                    <img src="~/Images/@sach.AnhBia" alt="Thumbnail Image" class="img-responsive img-rounded imgbook" style="width: 300px; height: 350px; display: block; margin: auto;">
+                    <div class="caption">
+                        <div style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })">@sach.TenSach</a>
+                        </div>
+                        <!--<p>@sach.MoTa</p>-->
+                        <p>Mô tả tóm tắt sản phẩm</p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<nav class="text-center">
+    <ul class="pagination">
+        @if (Model.PageCount > 1)
+        {
+            for (var i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="@(i == Model.PageNumber ? "active" : "")">
+                    <a href="@Url.Action("SachCD", new { maCD = Model[0].MaCD, pageNumber = i })">@i</a>
+                </li>
+            }
+        }
+    </ul>
+</nav>
+
+@section SliderPartial{
+    @Html.Action("SliderPartial", "SachOnline")
+}
+@section SachBanNhieuPartial{
+    @Html.Action("SachBanNhieuPartial", "SachOnline")
+}}
+

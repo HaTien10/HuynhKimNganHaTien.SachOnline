@@ -1,0 +1,39 @@
+﻿@model HuynhKimNganHaTien.SachOnline.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "chiTietKH";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+
+<h2>Chi tiết khách hàng</h2>
+
+<table>
+    <tr>
+        <th>Mã KH</th>
+        <td>@Model.MaKH</td>
+    </tr>
+    <tr>
+        <th>Họ và tên</th>
+        <td>@Model.HoTen</td>
+    </tr>
+    <tr>
+        <th>Tài khoản</th>
+        <td>@Model.TaiKhoan</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@Model.DiaChi</td>
+    </tr>
+    <tr>
+        <th>Điện thoại</th>
+        <td>@Model.DienThoai</td>
+    </tr>
+    <tr>
+        <th>Ngày sinh</th>
+        <td>@Model.NgaySinh</td>
+    </tr>
+</table>

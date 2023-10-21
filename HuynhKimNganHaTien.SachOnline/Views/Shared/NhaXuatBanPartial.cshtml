@@ -1,0 +1,14 @@
+﻿
+
+@{
+    ViewBag.Title = "NXBPartial";
+}
+
+@model IEnumerable<HuynhKimNganHaTien.SachOnline.Models.NHAXUATBAN>
+<ul class="list-group">
+    <li class="list-group-item active" style="font-weight:bold; text-align:center">SÁCH THEO NHÀ XUẤT BẢN</li>
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink(item.TenNXB, "SachCD", "SachOnline", new { id = item.MaNXB }, new { @class = "list-group-item" })
+    }
+</ul>

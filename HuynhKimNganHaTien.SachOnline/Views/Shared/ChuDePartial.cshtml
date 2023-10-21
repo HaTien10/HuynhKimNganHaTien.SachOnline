@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "ChudePartial";
+}
+
+@model IEnumerable<HuynhKimNganHaTien.SachOnline.Models.CHUDE>
+<ul class="list-group">
+    <li class="list-group-item active" style="font-weight:bold; text-align:center">SÁCH THEO CHỦ ĐỀ</li>
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink(item.TenChuDe, "SachCD", "SachOnline", new { id = item.MaCD }, new { @class = "list-group-item" })
+    }
+</ul>
