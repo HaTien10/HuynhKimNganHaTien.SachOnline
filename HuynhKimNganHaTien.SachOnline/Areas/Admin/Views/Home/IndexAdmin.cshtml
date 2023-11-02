@@ -4,18 +4,50 @@
     ViewBag.Title = "Admin";
 }
 
-<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-">QUẢN TRỊ SACHONLINE</h2>
+@model IEnumerable<HuynhKimNganHaTien.SachOnline.Models.TRANGTIN>
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>IndexAdmin</title>
-</head>
-<body>
-    <div>
-    </div>
-</body>
-</html>
+<h2>DANH SÁCH TRANG TIN</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetaTitle)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTrang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaTitle)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.MaTT })" class="btn btn-warning" role="button">Sửa</a>
+
+                <a href="@Url.Action("Delete", new { id = item.MaTT })" class="btn btn-danger" role="button">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>

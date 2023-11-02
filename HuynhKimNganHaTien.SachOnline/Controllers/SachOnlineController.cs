@@ -37,9 +37,20 @@ namespace HuynhKimNganHaTien.SachOnline.Controllers
 
             return PartialView(cd);
         }
+        [ChildActionOnly]
         public ActionResult NAVPartial()
         {
-            return PartialView();
+            List<MENU> lst = new List<MENU>();
+            lst = db.MENUs.Where(m => m.ParentId == null).OrderBy(m => m.OrderNumber).ToList(); int[] a = new int[lst.Count()];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var l = db.MENUs.Where(m => m.ParentId
+                ==
+                lst[i].Id);
+                a[i] = l.Count();
+            }
+            ViewBag.lst = a;
+            return PartialView(lst);
         }
         public ActionResult SliderPartial()
         {
@@ -203,5 +214,25 @@ namespace HuynhKimNganHaTien.SachOnline.Controllers
 
             return View("SachNXB", sachLienQuan);
         }
+        [ChildActionOnly]
+        public ActionResult LoadChildMenu(int parentId)
+        {
+            List<MENU> lst = new List<MENU>();
+            lst = db.MENUs.Where(m => m.ParentId == parentId).OrderBy(m => m.OrderNumber).ToList(); ViewBag.Count = lst.Count();
+            int[] a = new int[lst.Count()];
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var l = db.MENUs.Where(m => m.ParentId == lst[i].Id); a[i] = l.Count();
+            }
+            ViewBag.lst = a;
+            return PartialView("LoadChildMenu", lst);
+
+        }
+        public ActionResult TrangTin(string metatitle)
+        {
+            var tt = (from t in db.TRANGTINs where t.MetaTitle == metatitle select t).Single();
+            return View(tt); 
+        }
+
     }
 }
